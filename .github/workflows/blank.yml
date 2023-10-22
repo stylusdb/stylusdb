@@ -2,28 +2,25 @@ name: Rust CI
 
 on:
   push:
-    branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
+    branches:
+      - main  # Change this to your project's main branch name
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Rust
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup Rust
       uses: actions-rs/toolchain@v1
       with:
-        profile: minimal
-        toolchain: stable
-        override: true
+        profile: minimal  # Choose a Rust profile that fits your project
 
-    - name: Build Code
-      uses: actions-rs/cargo@v1
-      with:
-        command: cargo build
+    - name: Build and test
+      run: |
+        cargo build --release
+        cargo test
 
-    - name: Run Tests
-      uses: actions-rs/cargo@v1
-      with:
-        command: cargo test
+    # You can add more steps here, such as deployment, if needed
