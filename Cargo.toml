@@ -6,10 +6,17 @@ version = "0.1.0"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+env_logger = "0.10"
+log = "0.4"
+rustyline = "8.1"
 
 [[bin]]
 name = "my_binary"
 path = "src/lib.rs"
+
+[[test]]
+name = "kv_store_tests"
+path = "tests/stylus_kv_store_test.rs"
 
 [profile.dev]
 debug = true
